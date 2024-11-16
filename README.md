@@ -26,21 +26,19 @@ The **To-Do List App** is a web-based application that helps users manage their 
 
 ---
 
-## 📂 Project Structure
+### 📂 Project Structure
 
-```plaintext
-├── index.html          # Main HTML file
-├── style.css           # CSS file for styling
-├── script.js           # JavaScript for functionality
-├── images/             # Folder for icons and background images
-│   ├── todo.jpg
-│   ├── edit.jpeg
-│   ├── delete.jpg
-│   ├── backgroundimg.jpeg
-└── README.md           # Documentation file
+- **index.html**: Main HTML file
+- **style.css**: CSS file for styling
+- **script.js**: JavaScript for functionality
+- **images/**: Folder for icons and background images
+  - **todo.jpg**: Task icon image
+  - **edit.jpeg**: Edit icon image
+  - **delete.jpg**: Delete icon image
+  - **backgroundimg.jpeg**: Background image
+- **README.md**: Documentation file
 
-
-## 🔧 How to Use the Application
+### 🔧 How to Use the Application
 
 1. **Add a Task**  
    - Enter your task in the input field and click the "+" button or press the Enter key.
