@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "ananyashetty012/todolist:v1"
-        DOCKER_CREDENTIAL_ID = "dockerhub-creds"
+        DOCKER_CREDENTIAL_ID = "ananyagshetty7-dockerhub-creds"
         KUBE_NAMESPACE = "ananya-ns"
     }
 
