@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ananya-ns
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todolist-deployment
+  namespace: ananya-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todolist
+
+  template:
+    metadata:
+      labels:
+        app: todolist
+
+    spec:
+      containers:
+      - name: todolist-container
+        image: ananyashetty012/todolist:v1
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todolist-service
+  namespace: ananya-ns
+
+spec:
+  selector:
+    app: todolist
+
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+  type: LoadBalancer
