@@ -3,8 +3,6 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "ananyashetty012/todolist:v1"
-        DOCKER_CREDENTIAL_ID = "ananyagshetty7-dockerhub-creds"
-        KUBE_NAMESPACE = "ananya-ns"
     }
 
     stages {
@@ -23,20 +21,15 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([ credentialsId: "$DOCKER_CREDENTIAL_ID", url: "" ]) {
+                withCredentials([usernamePassword(
+                    credentialsId: 'ananya-dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker push $DOCKER_IMAGE'
-         stage('Push Docker Image') {
-    steps {
-        withCredentials([usernamePassword(
-            credentialsId: 'ananya-dockerhub-creds',
-            usernameVariable: 'DOCKER_USER',
-            passwordVariable: 'DOCKER_PASS'
-        )]) {
-            sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-            sh 'docker push $DOCKER_IMAGE'
-        }
-    }
-}       }
+                }
             }
         }
 
@@ -48,8 +41,9 @@ pipeline {
 
         stage('Get Service URL') {
             steps {
-                sh 'kubectl get svc -n $KUBE_NAMESPACE'
+                sh 'kubectl get svc -n ananya-ns'
             }
         }
     }
 }
+        
