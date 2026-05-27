@@ -11,7 +11,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Ananyashetty7/todolist.git'
+                git branch: 'main', url: 'https://github.com/Ananyashetty7/todolist.git'
             }
         }
 
